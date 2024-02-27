@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GetMoviesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::post('login', LoginController::class);
 Route::get('logout', LogoutController::class);
 
 Route::get('dashboard', DashboardController::class)->middleware('auth');
+
+Route::get('getMovies', GetMoviesController::class);
