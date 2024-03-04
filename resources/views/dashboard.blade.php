@@ -32,5 +32,13 @@
             <button type="submit">My Likes</button>
         </form>
     </div>
-    @include('tempMovieCard')
+    <!-- if discover/generate Movie is clicked, include movie recommendations in view -->
+    @isset($movieList)
+    @include('movies')
+    @endisset
+
+    <!-- if likes is clicked, include likes in view -->
+    @isset ($movieLikes)
+    @include('likes')
+    @endisset
 </div>
