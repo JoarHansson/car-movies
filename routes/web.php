@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\addLikesController;
+use App\Http\Controllers\AddLikesController as ControllersAddLikesController;
+use App\Http\Controllers\GetLikesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -29,3 +32,8 @@ Route::get('dashboard', DashboardController::class)->middleware('auth');
 Route::get('getMovies', GetMoviesController::class);
 
 Route::post('createAccount', CreateAccountController::class);
+
+Route::get('getLikes', GetLikesController::class)->middleware('auth');
+
+Route::get('addLike', ControllersAddLikesController::class)->middleware('auth');
+

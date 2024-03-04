@@ -10,9 +10,10 @@ class GetMoviesController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $randomInt = rand(1, 20);
+        // get movies based on car racing as keyword
+        $randomInt = rand(1, 10);
         $apiKey = env('API_KEY');
-        $response = Http::get('https://api.themoviedb.org/3/search/movie?query=cars&include_adult=false&language=en-US&page=' . $randomInt . '&api_key=' . $apiKey);
+        $response = Http::get('https://api.themoviedb.org/3/keyword/830-car-race/movies?include_adult=false&language=en-US&page=' . $randomInt . '&sort_by=popularity.desc&api_key=' . $apiKey);
         unset($apiKey);
 
         $list = $response->object();
