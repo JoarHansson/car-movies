@@ -23,8 +23,10 @@
 <div class="container display-none" id="create-account-container">
     <h1>Create account</h1>
 
-    <form action="/login" method="post">
+    <form action="/createAccount" method="post">
         @csrf
+        <label for="name">Name</label>
+        <input name="name" id="name" type="text" />
         <label for="email">Email</label>
         <input name="email" id="email" type="email" />
         <label for="password">Password</label>
