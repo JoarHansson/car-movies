@@ -1,0 +1,18 @@
+/* styles for index.blade.php: */
+
+.container {
+    margin-top: 3rem;
+}
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
+#link-to-create-account,
+#link-to-login {
+    cursor: pointer;
+}
