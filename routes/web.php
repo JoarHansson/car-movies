@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GetMoviesController;
+use App\Http\Controllers\CreateAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::get('dashboard', DashboardController::class)->middleware('auth');
 
 Route::get('getMovies', GetMoviesController::class);
 
+Route::post('createAccount', CreateAccountController::class);
+
 Route::get('getLikes', GetLikesController::class)->middleware('auth');
 
 Route::get('addLike', ControllersAddLikesController::class)->middleware('auth');
+
