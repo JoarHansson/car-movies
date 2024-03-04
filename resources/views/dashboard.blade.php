@@ -1,5 +1,8 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
-<link rel="stylesheet" href="app.css">
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" /> --}}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.red.min.css"
+/>
 <div class="container">
 
     <!-- some basic Styling using Pico -->
