@@ -16,12 +16,12 @@ class GetMoviesController extends Controller
             '310324',
             '830-car-race',
             '233981',
-            '286354',
+            '10039-racing'
         ];
-        
-        $randomInt = rand(1, 8);
+        $randomKeyword = rand(0,3);
+        $randomInt = rand(1, 3);
         $apiKey = env('API_KEY');
-        $response = Http::get('https://api.themoviedb.org/3/keyword/830-car-race/movies?include_adult=false&language=en-US&page=' . $randomInt . '&sort_by=popularity.desc&api_key=' . $apiKey);
+        $response = Http::get('https://api.themoviedb.org/3/keyword/' . $keywords[$randomKeyword]. '/movies?include_adult=false&language=en-US&page=' . $randomInt . '&sort_by=popularity.desc&api_key=' . $apiKey);
         unset($apiKey);
 
         $list = $response->object();
