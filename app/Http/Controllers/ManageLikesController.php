@@ -9,22 +9,31 @@ use App\Models\User;
 use App\Models\Like;
 use Illuminate\Support\Facades\DB;
 
-class AddLikesController extends Controller
+class ManageLikesController extends Controller
 {
     public function __invoke(Request $request)
     {
+        //set varables
         $userId = Auth::id();
         $user = Auth::user();
         $id = $request->input('movieId');
         $apiKey = env('API_KEY');
 
+        // check if movie_i already exists in database
          if (DB::table('likes')->where([
                 ['movie_id', '=', $id],
                 ['user_id', '=', $userId],
             ])->exists())
             {
+                // if it exists, remove movie from database and redirect user to desktop
+                DB::table('likes')->where([
+                    ['movie_id', '=', $id],
+                    ['user_id', '=', $userId],
+                ])->delete();
                 return redirect()->back();
-            } else {
+            }
+            // if id does not exist, add id to database, then return user 
+            {
             $response = Http::get('https://api.themoviedb.org/3/movie/' . $id . '?language=en-US&api_key=' . $apiKey);
             $list = $response->object();
             $like = new Like([
