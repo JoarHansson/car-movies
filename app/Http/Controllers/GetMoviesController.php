@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class GetMoviesController extends Controller
 {
@@ -17,6 +18,7 @@ class GetMoviesController extends Controller
             '233981',
             '286354',
         ];
+        
         $randomInt = rand(1, 8);
         $apiKey = env('API_KEY');
         $response = Http::get('https://api.themoviedb.org/3/keyword/830-car-race/movies?include_adult=false&language=en-US&page=' . $randomInt . '&sort_by=popularity.desc&api_key=' . $apiKey);
