@@ -2,6 +2,7 @@
 
 .container {
     margin-top: 3rem;
+    position: relative;
 }
 
 .display-none {
@@ -15,4 +16,26 @@
 #link-to-create-account,
 #link-to-login {
     cursor: pointer;
+}
+.container img {
+     display: block; 
+    }
+.icon {
+     position: absolute; top:-40; right:0;
+    
+    }
+svg.w-1.h-1 {
+    width: 2rem;
+    height: auto;
+    color:#C52F21;
+
+}
+button.icon {
+    width: 4rem;
+    height: auto;
+    background-color: transparent;
+    border-color: transparent;
+}
+button.generate {
+    margin-bottom: 5rem;
 }

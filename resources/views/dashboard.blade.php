@@ -3,6 +3,10 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.red.min.css"
 />
+<link
+  rel="stylesheet"
+  href=""
+/>
 <div class="container">
 
     <!-- some basic Styling using Pico -->
@@ -30,11 +34,17 @@
         <form action="/getMovies">
             <button type="submit">Discover</button>
         </form>
+        <form action="/getToplist">
+            <button type="submit">Top List</button>
+        </form>
         <!-- placeholder, this does not generate likes, yet -->
         <form action="/getLikes">
             <button type="submit">My Likes</button>
         </form>
     </div>
+    @if (!isset($movieLikes) & !isset($movieList) || isset($toplist))
+    @include('toplist')
+    @endif
     <!-- if discover/generate Movie is clicked, include movie recommendations in view -->
     @isset($movieList)
     @include('movies')
@@ -45,4 +55,5 @@
     @include('likes')
     @endisset
 </div>
+@vite(['resources/css/app.css'])
 

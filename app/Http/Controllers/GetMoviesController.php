@@ -31,4 +31,16 @@ class GetMoviesController extends Controller
             'movieList' => $list,
         ]);
     }
+    public function getToplist() {
+        $apiKey = env('API_KEY');
+        $response = Http::get('https://api.themoviedb.org/3/keyword/233981/movies?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&api_key=' . $apiKey);
+        unset($apiKey);
+
+        $list = $response->object();
+
+        return view('dashboard', [
+            'user' => Auth::user(),
+            'topList' => $list,
+        ]);
+    }
 }

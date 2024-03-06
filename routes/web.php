@@ -22,17 +22,20 @@ use App\Http\Controllers\CreateAccountController;
 
 Route::view('/', 'index')->name('login')->middleware('guest');
 
-Route::post('login', LoginController::class);
+Route::post('login', LoginController::class)->middleware('guest');
+Route::get('login', LoginController::class)->middleware('guest');
 
-Route::get('logout', LogoutController::class);
+Route::get('logout', LogoutController::class)->middleware('auth');
 
 Route::get('dashboard', DashboardController::class)->middleware('auth');
 
-Route::get('getMovies', GetMoviesController::class);
+Route::get('getMovies', GetMoviesController::class)->middleware('auth');
 
-Route::post('createAccount', CreateAccountController::class);
+Route::post('createAccount', CreateAccountController::class)->middleware('guest');
 
 Route::get('getLikes', GetLikesController::class)->middleware('auth');
 
 Route::get('manageLike', ManageLikesController::class)->middleware('auth');
+
+Route::get("getToplist", [GetMoviesController::class, 'getToplist'])->middleware('auth');
 
