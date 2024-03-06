@@ -43,3 +43,18 @@ button.icon {
 button.generate {
     margin-bottom: 5rem;
 }
+h1 {
+    margin-top: 3rem;
+}
+
+button {
+    margin-top: 2rem;
+}
+
+/* grid system for the movies.*/
+.grid {
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    grid-column-gap: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}

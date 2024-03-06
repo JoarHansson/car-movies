@@ -2,10 +2,10 @@
     @isset($movieLikes)
     @foreach( $user->likes as $movie)
     <div class="container">
-    @if(!$movie->poster_path)
+    @if(!$movie->movie_poster)
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png" alt="no image available">
     @else
-        <img src=" http://image.tmdb.org/t/p/w500{{$movie->poster_path}}" alt="">
+        <img src=" http://image.tmdb.org/t/p/w500{{$movie->movie_poster}}" alt="">
      @endif
         <h3>{{$movie->movie_title}}</h3>
         <p>{{$movie->movie_rating}}</p>

@@ -18,6 +18,10 @@ class ManageLikesController extends Controller
         $user = Auth::user();
         $id = $request->input('movieId');
         $apiKey = env('API_KEY');
+        if ($request->input('page') && $request->input('keyword')){
+            $page = $request->input('page');
+            $keyword = $request->input('keyword');
+        }
 
         // check if movie_i already exists in database
          if (DB::table('likes')->where([
@@ -36,10 +40,16 @@ class ManageLikesController extends Controller
             {
             $response = Http::get('https://api.themoviedb.org/3/movie/' . $id . '?language=en-US&api_key=' . $apiKey);
             $list = $response->object();
+
+            if (!$list->poster_path){
+                $poster = "";
+            } else {
+                $poster = $list->poster_path;
+            }
             $like = new Like([
                 'movie_id' => $list->id,
                 'movie_title' => $list->title,
-                'movie_poster' => $list->poster_path,
+                'movie_poster' => $poster,
                 'movie_rating' => $list->vote_average,
             ]);
 
@@ -48,7 +58,16 @@ class ManageLikesController extends Controller
             $userMethod = User::find($id);
             $userMethod->likes()->save($like);
             unset($apikey);
-            return redirect()->back();
+        
+         // if previous page was Discover, return user with the same page and keyword  
+        if (isset($page) && isset($keyword)){
+            return redirect()->action(
+                [GetMoviesController::class, 'returnToPage'], ['page' => $page, 'keyword' => $keyword]
+            );
+        } else {
+        // else redirect to toplist
+            return redirect('/getToplist');
+        }
         }
     }
 }

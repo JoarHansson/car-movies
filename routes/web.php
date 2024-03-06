@@ -29,7 +29,7 @@ Route::get('logout', LogoutController::class)->middleware('auth');
 
 Route::get('dashboard', DashboardController::class)->middleware('auth');
 
-Route::get('getMovies', GetMoviesController::class)->middleware('auth');
+Route::get('getMovies', [GetMoviesController::class, 'generateMovies'])->middleware('auth');
 
 Route::post('createAccount', CreateAccountController::class)->middleware('guest');
 
@@ -39,3 +39,4 @@ Route::get('manageLike', ManageLikesController::class)->middleware('auth');
 
 Route::get("getToplist", [GetMoviesController::class, 'getToplist'])->middleware('auth');
 
+Route::get('returnToPage', [GetMoviesController::class, 'returnToPage'])->middleware('auth');
