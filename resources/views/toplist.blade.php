@@ -1,13 +1,10 @@
 <!-- Generate a card for all movies -->
 
-<div class="grid">@isset($movieList)
-    @foreach( $movieList->results as $movie)
+<div class="grid">@isset($topList)
+    @foreach( $topList->results as $movie)
     <div class="container">
-    @if(!$movie->poster_path)
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png" alt="no image available">
-    @else
+
         <img src=" http://image.tmdb.org/t/p/w500{{$movie->poster_path}}" alt="">
-     @endif
         <h3>{{$movie->title}}</h3>
         <form action="/manageLike">
             <input type="hidden" value="{{$movie->id}}">
@@ -22,6 +19,3 @@
     @endforeach
     @endisset
 </div>
-<form action="/getMovies">
-            <button type="submit"class="generate">Generate Movies</button>
-    </form>
