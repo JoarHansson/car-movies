@@ -38,7 +38,7 @@ Route::post('createAccount', CreateAccountController::class)->middleware('guest'
 
 Route::get('accountManager', AccountManagerController::class)->middleware('auth');
 
-Route::post('changePassword', ChangePasswordController::class)->middleware('auth');
+Route::patch('changePassword', ChangePasswordController::class)->middleware('auth');
 
 Route::delete('deleteAccount', DeleteAccountController::class)->middleware('auth');
 

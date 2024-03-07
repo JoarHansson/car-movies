@@ -14,6 +14,7 @@
 
     <h3>Change password</h3>
     <form action="/changePassword" method="post">
+        @method('PATCH')
         @csrf
         <label for="currentPassword">Your current password</label>
         <input name="currentPassword" id="currentPassword" type="password" />
