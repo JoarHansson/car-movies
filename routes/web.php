@@ -8,6 +8,8 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GetMoviesController;
 use App\Http\Controllers\CreateAccountController;
+use App\Http\Controllers\AccountManagerController;
+use App\Http\Controllers\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +35,17 @@ Route::get('getMovies', [GetMoviesController::class, 'generateMovies'])->middlew
 
 Route::post('createAccount', CreateAccountController::class)->middleware('guest');
 
+Route::get('accountManager', AccountManagerController::class)->middleware('auth');
+
+Route::post('changePassword', ChangePasswordController::class)->middleware('auth');
+
 Route::get('getLikes', GetLikesController::class)->middleware('auth');
+
+Route::get('addLike', ControllersAddLikesController::class)->middleware('auth');
 
 Route::get('manageLike', ManageLikesController::class)->middleware('auth');
 
 Route::get("getToplist", [GetMoviesController::class, 'getToplist'])->middleware('auth');
 
 Route::get('returnToPage', [GetMoviesController::class, 'returnToPage'])->middleware('auth');
+

@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.red.min.css" />
-
 <link rel="stylesheet" href="/resources/css/app.css">
 
 <div class="container display-block" id="login-container">
