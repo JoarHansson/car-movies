@@ -13,26 +13,33 @@ class GetMoviesController extends Controller
     {
         // get movies based on car racing as keyword
         $keywords= [
-            '310324', //car
             '830-car-race', // car race
             '233981', // f1
-            '10039-racing' // racing 
+            '10039-racing', // racing
+            '1749', //taxi driver
         ];
 
-        $randomKeyword = rand(0,3);
+        $randomKeyword = rand(0,3); // generate random keyword
         $tag = $keywords[$randomKeyword];
-        $randomInt = rand(1, 3);
+       $randomInt = rand(1, 4); // get random page number
         $apiKey = env('API_KEY');
         $response = Http::get('https://api.themoviedb.org/3/keyword/' . $tag. '/movies?include_adult=false&language=en-US&page=' . $randomInt . '&sort_by=popularity.desc&api_key=' . $apiKey);
         unset($apiKey);
 
         $list = $response->object();
 
+        $allLikes = DB::table('likes')->where([
+                ['user_id', '=', Auth::id()],
+            ])->get();
+
+        $liked = collect($allLikes)->pluck('movie_id');
+
         return view('dashboard', [
             'user' => Auth::user(),
             'movieList' => $list,
             'page' => $randomInt,
             'keyword' => $tag,
+            'liked' => $liked,
         ]);
     }
 
@@ -44,20 +51,25 @@ class GetMoviesController extends Controller
 
         $list = $response->object();
 
+        $allLikes = DB::table('likes')->where([
+        ])->get();
+
+        $liked = collect($allLikes)->pluck('movie_id');
+
         return view('dashboard', [
             'user' => Auth::user(),
             'topList' => $list,
+            'liked' => $liked,
         ]);
     }
-    
 
     // return to the previous page with the page and keyword intact
     public function returnToPage(Request $request) {
-        
+
         $apiKey = env('API_KEY');
         if (isset($request->keyword) && isset($request->keyword))
         {
-        $keyword = $request->keyword; 
+        $keyword = $request->keyword;
         $page = $request->page;
          } else {
             $keyword = '';
@@ -69,11 +81,19 @@ class GetMoviesController extends Controller
 
         $list = $response->object();
 
+
+        $allLikes = DB::table('likes')->where([
+            ['user_id', '=', Auth::id()],
+        ])->get();
+
+        $liked = collect($allLikes)->pluck('movie_id');
+
         return view('dashboard', [
             'user' => Auth::user(),
             'movieList' => $list,
             'page' => $page,
             'keyword' => $keyword,
+            'liked' => $liked,
         ]);
     }
 }
