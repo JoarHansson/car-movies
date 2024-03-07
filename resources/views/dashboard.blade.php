@@ -7,6 +7,9 @@
   rel="stylesheet"
   href=""
 />
+
+@include('header')
+
 <div class="container">
 
     <!-- some basic Styling using Pico -->
@@ -14,7 +17,7 @@
 
     </style>
     <h1>Hello {{ $user->name }}</h1>
-    <a href="/logout">logout</a>
+
     @include('errors')
     <div class="grid">
         <form action="/getMovies">

@@ -8,6 +8,9 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GetMoviesController;
 use App\Http\Controllers\CreateAccountController;
+use App\Http\Controllers\AccountManagerController;
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\DeleteAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +35,12 @@ Route::get('dashboard', DashboardController::class)->middleware('auth');
 Route::get('getMovies', [GetMoviesController::class, 'generateMovies'])->middleware('auth');
 
 Route::post('createAccount', CreateAccountController::class)->middleware('guest');
+
+Route::get('accountManager', AccountManagerController::class)->middleware('auth');
+
+Route::patch('changePassword', ChangePasswordController::class)->middleware('auth');
+
+Route::delete('deleteAccount', DeleteAccountController::class)->middleware('auth');
 
 Route::get('getLikes', GetLikesController::class)->middleware('auth');
 

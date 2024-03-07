@@ -1,5 +1,4 @@
 <!-- Generate a card for all movies -->
-
 <div class="grid">
     @isset($topList)
         @foreach( $topList->results as $movie)
