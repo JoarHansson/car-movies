@@ -13,7 +13,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
 
-            return redirect('/dashboard');
+            return redirect('/getToplist');
         } else {
             return back()->withErrors('Something went wrong! Please try again.');
         }
