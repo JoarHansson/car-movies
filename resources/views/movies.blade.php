@@ -1,6 +1,6 @@
 <!-- Generate a card for all movies -->
 
-<div class="grid">@isset($movieList)
+<div class="grid moviegrid">@isset($movieList)
     @foreach( $movieList->results as $movie)
     <div class="container">
     @if(!$movie->poster_path)
