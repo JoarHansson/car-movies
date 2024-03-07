@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.red.min.css" />
 <link rel="stylesheet" href="/resources/css/app.css">
 
+@include('header')
+
 <div class="container">
     <h1>Account management</h1>
 
@@ -16,20 +18,21 @@
     <form action="/changePassword" method="post">
         @method('PATCH')
         @csrf
-        <label for="currentPassword">Your current password</label>
-        <input name="currentPassword" id="currentPassword" type="password" />
-        <label for="newPassword">New password</label>
-        <input name="newPassword" id="newPassword" type="password" />
-        <button type="submit">Change password</button>
+        <div class="grid">
+            <input name="currentPassword" id="currentPassword" type="password" placeholder="Your current password" />
+            <input name="newPassword" id="newPassword" type="password" placeholder="Your new password" />
+            <button type="submit">Change password</button>
+        </div>
     </form>
 
     <h3>Delete your account</h3>
     <form action="/deleteAccount" method="post">
         @method('DELETE')
         @csrf
-        <label for="currentPassword">Enter your current password for extra safety</label>
-        <input name="currentPassword" id="currentPassword" type="password" />
-        <button type="submit">Delete account</button>
+        <div class="grid">
+            <input name="currentPassword" id="currentPassword" type="password" placeholder="Your current password" />
+            <button type="submit">Delete account</button>
+        </div>
     </form>
 
 </div>

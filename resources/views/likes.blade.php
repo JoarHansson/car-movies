@@ -1,4 +1,4 @@
-<div class="grid">
+<div class="grid moviegrid">
     @isset($movieLikes)
     @foreach( $user->likes as $movie)
     <div class="container">

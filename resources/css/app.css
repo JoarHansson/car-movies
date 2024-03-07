@@ -47,14 +47,36 @@ h1 {
     margin-top: 3rem;
 }
 
-button {
+/* button {
     margin-top: 2rem;
-}
+} */
 
 /* grid system for the movies.*/
-.grid {
+.moviegrid {
     grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     grid-column-gap: 2rem;
     margin-left: 2rem;
     margin-right: 2rem;
+}
+
+/* header styles: */
+header.header {
+    background-color: #c52f21;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+header > h3,
+header > a {
+    margin: 0;
+}
+
+header > div.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
 }
