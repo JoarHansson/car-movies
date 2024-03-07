@@ -2,16 +2,7 @@
 <link rel="stylesheet" href="/resources/css/app.css">
 
 <div class="container">
-    <h1>Change password</h1>
-
-    <form action="/changePassword" method="post">
-        @csrf
-        <label for="currentPassword">Your current password</label>
-        <input name="currentPassword" id="currentPassword" type="password" />
-        <label for="newPassword">New password</label>
-        <input name="newPassword" id="newPassword" type="password" />
-        <button type="submit">Change password</button>
-    </form>
+    <h1>Account management</h1>
 
     @include('errors')
 
@@ -20,6 +11,26 @@
         {{ session()->get('message') }}
     </div>
     @endif
+
+    <h3>Change password</h3>
+    <form action="/changePassword" method="post">
+        @method('PATCH')
+        @csrf
+        <label for="currentPassword">Your current password</label>
+        <input name="currentPassword" id="currentPassword" type="password" />
+        <label for="newPassword">New password</label>
+        <input name="newPassword" id="newPassword" type="password" />
+        <button type="submit">Change password</button>
+    </form>
+
+    <h3>Delete your account</h3>
+    <form action="/deleteAccount" method="post">
+        @method('DELETE')
+        @csrf
+        <label for="currentPassword">Enter your current password for extra safety</label>
+        <input name="currentPassword" id="currentPassword" type="password" />
+        <button type="submit">Delete account</button>
+    </form>
 
 </div>
 
