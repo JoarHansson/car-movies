@@ -15,6 +15,12 @@
 
     @include('errors')
 
+    @if(session()->has('message'))
+    <div>
+        {{ session()->get('message') }}
+    </div>
+    @endif
+
     <h5><a id="link-to-create-account">Or create a new account...</a></h5>
 
 </div>
@@ -34,6 +40,12 @@
     </form>
 
     @include('errors')
+
+    @if(session()->has('message'))
+    <div>
+        {{ session()->get('message') }}
+    </div>
+    @endif
 
     <h5><a id="link-to-login">Or login to your account...</a></h5>
 

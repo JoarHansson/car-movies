@@ -15,7 +15,11 @@ class LogoutTest extends TestCase
     {
         $this->followingRedirects();
 
-        $user = User::factory()->create(['name' => 'TestPerson', 'email' => 'test@test.se', 'password' => '1234']);
+        $user = User::factory()->create([
+            'name' => fake()->name(),
+            'email' => fake()->safeEmail(),
+            'password' => fake()->password()
+        ]);
 
         $this->actingAs($user)
             ->get('/logout')

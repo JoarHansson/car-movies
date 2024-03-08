@@ -17,8 +17,8 @@ class DeleteAccountTest extends TestCase
         $this->followingRedirects();
 
         $user = User::factory()->create([
-            'name' => 'TestPerson',
-            'email' => 'test@test.se',
+            'name' => fake()->name(),
+            'email' => fake()->safeEmail(),
             'password' => Hash::make('1234')
         ]);
 

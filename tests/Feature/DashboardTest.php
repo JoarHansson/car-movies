@@ -16,7 +16,11 @@ class DashboardTest extends TestCase
     {
         $this->followingRedirects();
 
-        $user = User::factory()->create(['name' => 'TestPerson', 'email' => 'test@test.se', 'password' => '1234']);
+        $user = User::factory()->create([
+            'name' => 'TestPerson',
+            'email' => 'test@test.se',
+            'password' => '1234'
+        ]);
 
         $this->actingAs($user)
             ->get('/dashboard')
@@ -27,8 +31,6 @@ class DashboardTest extends TestCase
     public function test_view_dashboard_as_guest(): void
     {
         $this->followingRedirects();
-
-        $user = User::factory()->create(['name' => 'TestPerson', 'email' => 'test@test.se', 'password' => '1234']);
 
         $this->assertGuest()
             ->get('/dashboard')

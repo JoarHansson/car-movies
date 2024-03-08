@@ -17,15 +17,15 @@ class AccountManagerTest extends TestCase
         $this->followingRedirects();
 
         $user = User::factory()->create([
-            'name' => 'TestPerson',
-            'email' => 'test@test.se',
-            'password' => '1234'
+            'name' => fake()->name(),
+            'email' => fake()->safeEmail(),
+            'password' => fake()->password()
         ]);
 
         $this->actingAs($user)
             ->get('/accountManager')
             ->assertStatus(200)
-            ->assertSeeText(["Account management"]);
+            ->assertSeeText("Account management");
     }
 
     public function test_try_to_view_account_manager_as_guest(): void
