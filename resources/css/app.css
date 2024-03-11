@@ -18,21 +18,20 @@
     cursor: pointer;
 }
 .container img {
-     display: block;
-     border-style: solid;
-     border-color: grey;
-     border-width: 1px;
-
-    }
+    display: block;
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+}
 .icon {
-     position: absolute; top:0; right:0;
-
-    }
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 svg.w-1.h-1 {
     width: 2rem;
     height: auto;
-    color:#C52F21;
-
+    color: #c52f21;
 }
 button.icon {
     width: 4rem;
@@ -79,4 +78,11 @@ header > div.nav {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+}
+
+/* likes: */
+.message-no-likes {
+    margin: 2rem auto;
+    font-size: larger;
+    font-style: italic;
 }

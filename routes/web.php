@@ -11,6 +11,7 @@ use App\Http\Controllers\CreateAccountController;
 use App\Http\Controllers\AccountManagerController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DeleteAccountController;
+use App\Http\Controllers\DeleteLikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,8 @@ Route::delete('deleteAccount', DeleteAccountController::class)->middleware('auth
 Route::get('getLikes', GetLikesController::class)->middleware('auth');
 
 Route::get('manageLike', ManageLikesController::class)->middleware('auth');
+
+Route::delete('deleteLike/{like}', DeleteLikeController::class)->middleware('auth');
 
 // Movie querying routes
 Route::get('getMovies', [GetMoviesController::class, 'generateMovies'])->middleware('auth');
