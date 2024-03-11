@@ -18,13 +18,14 @@ class DeleteAccountController extends Controller
         // if password doesn't match what we have in the database:
         if (!Hash::check($request->currentPassword, $user->password)) {
 
-            return redirect()->back()->withErrors('The current password you entered was incorrect.');
+            return redirect('/accountManager')->withErrors('The current password you entered was incorrect.');
         }
 
         DB::table('users')->where('id',  $user->id)->delete();
 
-        $request->session()->invalidate();
+        Auth::logout();
 
+        $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect('/')->with('message', 'Account was successfully deleted.');

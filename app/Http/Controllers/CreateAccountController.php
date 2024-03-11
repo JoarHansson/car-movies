@@ -33,7 +33,7 @@ class CreateAccountController extends Controller
 
         if (Auth::attempt($credentials)) {
 
-            return redirect('/dashboard')->with('message', 'Account created successfully.');
+            return redirect('/getToplist')->with('message', 'Account created successfully.');
         }
     }
 }

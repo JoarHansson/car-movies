@@ -6,34 +6,34 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
-class DashboardTest extends TestCase
+
+class AccountManagerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_view_dashboard_as_logged_in_user(): void
+    public function test_view_account_manager_as_logged_in_user(): void
     {
         $this->followingRedirects();
 
         $user = User::factory()->create([
-            'name' => 'TestPerson',
-            'email' => 'test@test.se',
-            'password' => '1234'
+            'name' => fake()->name(),
+            'email' => fake()->safeEmail(),
+            'password' => fake()->password()
         ]);
 
         $this->actingAs($user)
-            ->get('/dashboard')
+            ->get('/accountManager')
             ->assertStatus(200)
-            ->assertSeeText(["Hello {$user->name}"]);
+            ->assertSeeText("Account management");
     }
 
-    public function test_view_dashboard_as_guest(): void
+    public function test_try_to_view_account_manager_as_guest(): void
     {
         $this->followingRedirects();
 
         $this->assertGuest()
-            ->get('/dashboard')
+            ->get('/accountManager')
             ->assertStatus(200)
             ->assertSeeText(['Email', 'Password', 'Login']); // (redirect to index.blade.php)
 

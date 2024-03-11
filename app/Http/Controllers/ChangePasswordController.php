@@ -23,7 +23,7 @@ class ChangePasswordController extends Controller
         // if password doesn't match what we have in the database:
         if (!Hash::check($request->currentPassword, $user->password)) {
 
-            return Redirect::back()->withErrors('The current password you entered was incorrect.');
+            return redirect('/accountManager')->withErrors('The current password you entered was incorrect.');
         }
 
 

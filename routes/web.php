@@ -23,28 +23,34 @@ use App\Http\Controllers\DeleteAccountController;
 |
 // */
 
+// ROUTES FOR GUESTS:
 Route::view('/', 'index')->name('login')->middleware('guest');
 
 Route::post('login', LoginController::class)->middleware('guest');
-Route::get('login', LoginController::class)->middleware('guest');
-
-Route::get('logout', LogoutController::class)->middleware('auth');
-
-Route::get('dashboard', DashboardController::class)->middleware('auth');
-
-Route::get('getMovies', [GetMoviesController::class, 'generateMovies'])->middleware('auth');
 
 Route::post('createAccount', CreateAccountController::class)->middleware('guest');
 
+
+// ROUTES FOR USERS:
+// General routes
+Route::get('dashboard', DashboardController::class)->middleware('auth');
+
+Route::get('logout', LogoutController::class)->middleware('auth');
+
+// Account management routes
 Route::get('accountManager', AccountManagerController::class)->middleware('auth');
 
 Route::patch('changePassword', ChangePasswordController::class)->middleware('auth');
 
 Route::delete('deleteAccount', DeleteAccountController::class)->middleware('auth');
 
+// Like view and management routes
 Route::get('getLikes', GetLikesController::class)->middleware('auth');
 
 Route::get('manageLike', ManageLikesController::class)->middleware('auth');
+
+// Movie querying routes
+Route::get('getMovies', [GetMoviesController::class, 'generateMovies'])->middleware('auth');
 
 Route::get("getToplist", [GetMoviesController::class, 'getToplist'])->middleware('auth');
 
