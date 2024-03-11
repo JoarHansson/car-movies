@@ -51,7 +51,9 @@ class GetMoviesController extends Controller
 
         $list = $response->object();
 
+
         $allLikes = DB::table('likes')->where([
+            ['user_id', '=', Auth::id()],
         ])->get();
 
         $liked = collect($allLikes)->pluck('movie_id');
