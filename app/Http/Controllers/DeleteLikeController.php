@@ -17,7 +17,7 @@ class DeleteLikeController extends Controller
         $user = Auth::user();
 
         DB::table('likes')
-            ->where('user_id',  $like->user_id)
+            ->where('user_id',  $user->id)
             ->where('movie_id',  $like->movie_id)
             ->delete();
 
