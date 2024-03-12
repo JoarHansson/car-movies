@@ -11,6 +11,7 @@ class GetMoviesController extends Controller
 {
     public function generateMovies(Request $request)
     {
+
         // get movies based on car racing as keyword
         $keywords= [
             '830-car-race', // car race
@@ -23,6 +24,7 @@ class GetMoviesController extends Controller
         $tag = $keywords[$randomKeyword];
        $randomInt = rand(1, 4); // get random page number
         $apiKey = env('API_KEY');
+
         $response = Http::get('https://api.themoviedb.org/3/keyword/' . $tag. '/movies?include_adult=false&language=en-US&page=' . $randomInt . '&sort_by=popularity.desc&api_key=' . $apiKey);
         unset($apiKey);
 
@@ -80,9 +82,7 @@ class GetMoviesController extends Controller
 
         $response = Http::get('https://api.themoviedb.org/3/keyword/'. $keyword. '/movies?include_adult=false&language=en-US&page=' . $page . '&sort_by=popularity.desc&api_key=' . $apiKey);
         unset($apiKey);
-
         $list = $response->object();
-
 
         $allLikes = DB::table('likes')->where([
             ['user_id', '=', Auth::id()],
