@@ -11,6 +11,7 @@ class GetMoviesController extends Controller
 {
     public function generateMovies(Request $request)
     {
+
         // get movies based on car racing as keyword
         $keywords= [
             '830-car-race', // car race

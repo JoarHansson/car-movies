@@ -34,7 +34,7 @@ class ManageLikesTest extends TestCase
 
             $page = rand(1, 4); // get random page number
 
-            // Mock request
+            // Mock the request
             Http::fake([
                 'https://api.themoviedb.org/3/keyword/*' => Http::response([
                     'results' => [
@@ -57,10 +57,10 @@ class ManageLikesTest extends TestCase
                     ],
                 ]),
             ]);
+            //fake request
             $response = $this->actingAs($user)
             ->get('manageLike?movieId='.$movieId.'&page='.$page.'&keyword='.fake()->randomElement($keywords))
             ->assertStatus(302);
-
             //make sure the movie is added to the database
      $this->assertTrue(
         Like::where('user_id', $user->id)
