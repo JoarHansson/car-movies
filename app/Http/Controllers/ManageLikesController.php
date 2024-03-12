@@ -11,17 +11,17 @@ use Illuminate\Support\Facades\DB;
 
 class ManageLikesController extends Controller
 {
-    public function __invoke(Request $request)
+    public function manageLikes(Request $request)
     {
         //set varables
         $userId = Auth::id();
         $user = Auth::user();
-        $id = $request->input('movieId');
-        $apiKey = env('API_KEY');
 
-        if ($request->input('page') && $request->input('keyword')){
-            $page = $request->input('page');
-            $keyword = $request->input('keyword');
+        $id = $request->movieId;
+        $apiKey = env('API_KEY');
+        if ($request->page && $request->keyword){
+            $page = $request->page;
+            $keyword = $request->keyword;
             }
 
         // check if movie_i already exists in database
@@ -39,12 +39,13 @@ class ManageLikesController extends Controller
             }
             // if id does not exist, add id to database, then return user
             $response = Http::get('https://api.themoviedb.org/3/movie/' . $id . '?language=en-US&api_key=' . $apiKey);
+
             $list = $response->object();
 
-            if (!$list->poster_path){
-                $poster = "";
-            } else {
+            if (isset($list->poster_path)) {
                 $poster = $list->poster_path;
+            } else {
+                $poster = '';
             }
             $like = new Like([
                 'movie_id' => $list->id,
