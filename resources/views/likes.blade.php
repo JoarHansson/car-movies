@@ -2,7 +2,7 @@
     @isset($movieLikes)
 
     @if (count($user->likes) == 0)
-    <p class="message-no-likes">You don't have any likes yet!</p>
+    <p class="message-no-likes">Nothing here yet!</p>
     @endif
 
     @foreach( $user->likes as $like)
