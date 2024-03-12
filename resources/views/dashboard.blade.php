@@ -14,11 +14,11 @@
         <form action="/getToplist">
             <button type="submit" @isset($topList) class="outline" @endisset>Top List</button>
         </form>
-        <!-- placeholder, this does not generate likes, yet -->
         <form action="/getLikes">
             <button type="submit" @isset($movieLikes) class="outline" @endisset>My Likes</button>
         </form>
     </div>
+
     @if (!isset($movieLikes) && !isset($movieList) || isset($toplist))
     @include('toplist')
     @endif
