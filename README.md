@@ -1,7 +1,9 @@
 # Car Movies
-A repository for the Laravel assignment at Yrgo. THe project was done in collaboration by [Frida Fernhede](https://github.com/Fridish) and [Joar Hansson](https://github.com/JoarHansson).
+A repository for the Laravel assignment at Yrgo. 
 
-The assignment was to create a small application in which the following Laravel features were useed: 
+The project was done in collaboration by [Frida Fernhede](https://github.com/Fridish) and [Joar Hansson](https://github.com/JoarHansson).
+
+The assignment was to create a small application in which the following Laravel features were used: 
 - Controllers
 - Migrations
 - HTTP Tests (on all routes)
