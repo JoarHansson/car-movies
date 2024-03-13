@@ -48,7 +48,7 @@ Route::delete('deleteAccount', DeleteAccountController::class)->middleware('auth
 // Like view and management routes
 Route::get('getLikes', GetLikesController::class)->middleware('auth');
 
-Route::get('manageLike',[ ManageLikesController::class, 'manageLikes'])->middleware('auth');
+Route::get('manageLike', [ManageLikesController::class, 'manageLikes'])->middleware('auth');
 
 Route::delete('deleteLike/{like}', DeleteLikeController::class)->middleware('auth');
 

@@ -13,7 +13,7 @@
         {{ session()->get('message') }}
     </div>
     @endif
-
+    <!-- form for changeing password -->
     <h3>Change password</h3>
     <form action="/changePassword" method="post">
         @method('PATCH')
@@ -24,6 +24,7 @@
             <button type="submit">Change password</button>
         </div>
     </form>
+    <!-- form for deleting the user account -->
 
     <h3>Delete your account</h3>
     <form action="/deleteAccount" method="post">

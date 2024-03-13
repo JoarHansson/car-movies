@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.red.min.css" />
 <link rel="stylesheet" href="/resources/css/app.css">
 
+<!--login view -->
 <div class="container display-block" id="login-container">
     <h1>Login</h1>
 
@@ -24,7 +25,7 @@
     <h5><a id="link-to-create-account">Or create a new account...</a></h5>
 
 </div>
-
+<!--create account view -->
 <div class="container display-none" id="create-account-container">
     <h1>Create account</h1>
 

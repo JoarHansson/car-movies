@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class DeleteLikeController extends Controller
 {
-
+    // if like exists in database, delete it
     public function __invoke(Like $like, Request $request)
     {
         $user = Auth::user();
