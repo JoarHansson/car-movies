@@ -2,24 +2,21 @@
 
 namespace Tests\Feature;
 
-
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
-use Illuminate\Support\Facades\Http;
 
-
-class GetMoviesTest extends TestCase
+class GetTopListTest extends TestCase
 {
     use RefreshDatabase;
 
-    //Test if user is redirected to movie-view and movie titles are visible
-    public function test_get_movies(): void
+    //Tests if user is redirected to the TopList-view
+    public function test_generate_top_list(): void
     {
         $this->followingRedirects();
 
-        //Create fake user
+        //Create user
         $user = User::factory()->create([
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
@@ -28,14 +25,12 @@ class GetMoviesTest extends TestCase
 
         //Fake request
         $response = $this->actingAs($user)
-            ->get('getMovies');
+            ->get('getToplist');
 
+        //Check response for topList and correct movie in view
         $response->assertStatus(200)
-            ->assertSeeText(["Hello {$user->name}"])
-            ->assertViewHas('movieList');
-
-        //Make sure results are visible
-        $viewData = $response->original->getData();
-        $this->assertTrue(property_exists($viewData['movieList']->results[0], 'title'));
+            ->assertViewHas('topList')
+            ->assertViewHas('liked')
+            ->assertSeeText(["Hello {$user->name}", "Murder Mystery", "6.278"]);
     }
 }
