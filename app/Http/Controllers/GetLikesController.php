@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class GetLikesController extends Controller
 {
+    //  send parameter movieLikes to display the likes view in desktop
     public function __invoke()
     {
         $user = Auth::user();

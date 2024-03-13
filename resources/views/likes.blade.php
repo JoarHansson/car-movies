@@ -1,6 +1,6 @@
 <div class="grid moviegrid">
     @isset($movieLikes)
-
+    <!--view where all the user likes are displayed -->
     @if (count($user->likes) == 0)
     <p class="message-no-likes">Nothing here yet!</p>
     @endif
@@ -8,7 +8,7 @@
     @foreach( $user->likes as $like)
 
     <div class="container">
-
+        <!-- if no image is available, display a placeholder -->
         @if(!$like->movie_poster)
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
             alt="no image available">
@@ -20,7 +20,7 @@
         <h3>{{$like->movie_title}}</h3>
         <p>{{$like->movie_rating}}</p>
 
-
+        <!-- if heart is clicked, delete like -->
         <form action="deleteLike/{{$like->id}}" method="post">
             @method('DELETE')
             @csrf

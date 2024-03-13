@@ -1,4 +1,5 @@
 <div class="grid moviegrid">
+    <!-- display all movies from the response -->
     @isset($movieList)
     @foreach($movieList->results as $movie)
     <div class="container">

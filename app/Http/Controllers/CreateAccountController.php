@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CreateAccountController extends Controller
 {
+    //if user does not already exist, create account and log in
     public function __invoke(Request $request)
     {
         $credentials = $request->only('name', 'email', 'password');

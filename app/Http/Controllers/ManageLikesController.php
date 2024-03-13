@@ -19,54 +19,54 @@ class ManageLikesController extends Controller
 
         $id = $request->movieId;
         $apiKey = env('API_KEY');
-        if ($request->page && $request->keyword){
+        if ($request->page && $request->keyword) {
             $page = $request->page;
             $keyword = $request->keyword;
-            }
+        }
 
         // check if movie_i already exists in database
-         if (DB::table('likes')->where([
+        if (DB::table('likes')->where([
+            ['movie_id', '=', $id],
+            ['user_id', '=', $userId],
+        ])->exists()) {
+            // if it exists, remove movie from database and redirect user to desktop
+            DB::table('likes')->where([
                 ['movie_id', '=', $id],
                 ['user_id', '=', $userId],
-            ])->exists())
-            {
-                // if it exists, remove movie from database and redirect user to desktop
-                DB::table('likes')->where([
-                    ['movie_id', '=', $id],
-                    ['user_id', '=', $userId],
-                ])->delete();
-                return redirect()->back();
-            }
-            // if id does not exist, add id to database, then return user
-            $response = Http::get('https://api.themoviedb.org/3/movie/' . $id . '?language=en-US&api_key=' . $apiKey);
+            ])->delete();
+            return redirect()->back();
+        }
+        // if id does not exist, add id to database, then return user
+        $response = Http::get('https://api.themoviedb.org/3/movie/' . $id . '?language=en-US&api_key=' . $apiKey);
 
-            $list = $response->object();
+        $list = $response->object();
 
-            if (isset($list->poster_path)) {
-                $poster = $list->poster_path;
-            } else {
-                $poster = '';
-            }
-            $like = new Like([
-                'movie_id' => $list->id,
-                'movie_title' => $list->title,
-                'movie_poster' => $poster,
-                'movie_rating' => $list->vote_average,
-            ]);
+        if (isset($list->poster_path)) {
+            $poster = $list->poster_path;
+        } else {
+            $poster = '';
+        }
+        $like = new Like([
+            'movie_id' => $list->id,
+            'movie_title' => $list->title,
+            'movie_poster' => $poster,
+            'movie_rating' => $list->vote_average,
+        ]);
 
-            $id = $user->id;
-            $like->user_id = $userId;
-            $userMethod = User::find($id);
-            $userMethod->likes()->save($like);
-            unset($apikey);
+        $id = $user->id;
+        $like->user_id = $userId;
+        $userMethod = User::find($id);
+        $userMethod->likes()->save($like);
+        unset($apikey);
 
-         // if previous page was Discover, return user with the same page and keyword
-        if (isset($page) && isset($keyword)){
+        // if previous page was Discover, return user with the same page and keyword
+        if (isset($page) && isset($keyword)) {
             return redirect()->action(
-                [GetMoviesController::class, 'returnToPage'], ['page' => $page, 'keyword' => $keyword]
+                [GetMoviesController::class, 'returnToPage'],
+                ['page' => $page, 'keyword' => $keyword]
             );
         } else {
-        // else redirect to toplist
+            // else redirect to toplist
             return redirect('/getToplist');
         }
     }

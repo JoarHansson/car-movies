@@ -7,6 +7,7 @@
     <h1>Hello {{ $user->name }}</h1>
 
     @include('errors')
+    <!-- buttons to toggle view. Active view is outlined instead of primary -->
     <div class="grid">
         <form action="/getMovies">
             <button type="submit" @isset($movieList) class="outline" @endisset>Discover</button>
