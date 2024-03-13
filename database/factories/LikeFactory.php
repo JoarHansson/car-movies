@@ -18,7 +18,7 @@ class LikeFactory extends Factory
     public function definition(): array
     {
         return [
-            'movie_id' => fake()->numberBetween(100000, 999999),
+            'movie_id' => fake()->numberBetween(200, 500),
             'movie_title' => fake()->name(),
             'movie_poster' => "/" . fake()->shuffle("1234567890acbdefghijklmnopq") . ".jpg",
             'movie_rating' => fake()->randomFloat(1, 0, 10),
