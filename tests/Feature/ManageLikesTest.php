@@ -20,8 +20,6 @@ class ManageLikesTest extends TestCase
     public function test_add_a_like_and_return_to_discover()
     {
 
-        $this->followingRedirects();
-
         // Ensure there's a user
         $user = User::factory()->create([
             'name' => fake()->name(),
@@ -30,7 +28,7 @@ class ManageLikesTest extends TestCase
         ]);
 
         // Define a movie id
-        $movieId = fake()->numberBetween(100000, 999999);
+        $movieId = 550; // Movie ID for Fight Club
 
         // Define a page and keywords array
         $keywords = [
@@ -46,8 +44,7 @@ class ManageLikesTest extends TestCase
         //Fake request
         $response = $this->actingAs($user)
             ->get('manageLike?movieId=' . $movieId . '&page=' . $page . '&keyword=' . $keywords[$randomNumber])
-            ->assertStatus(200)
-            ->assertViewHas('liked');
+            ->assertStatus(302);
 
         //Make sure the movie is added to the database
         $this->assertTrue(
@@ -55,8 +52,9 @@ class ManageLikesTest extends TestCase
                 ->where('movie_id', $movieId)
                 ->exists()
         );
-        $viewData = $response->original->getData();
-        $this->assertTrue(property_exists($viewData['movieList']->results[0], 'title'));
+
+        // Make sure redirected to the correct page
+        $response->assertRedirectContains('returnToPage' . '?page=' . $page . '&keyword=' . $keywords[$randomNumber]);
     }
 
 
@@ -82,7 +80,7 @@ class ManageLikesTest extends TestCase
         ]);
         //Create like
         $like = LikeFactory::new()->create([
-            'movie_id' => fake()->numberBetween(100000, 999999),
+            'movie_id' => fake()->numberBetween(200, 500),
             'movie_title' => fake()->name(),
             'movie_poster' => "/" . fake()->shuffle("1234567890acbdefghijklmnopq") . ".jpg",
             'movie_rating' => fake()->randomFloat(1, 0, 10),
@@ -115,7 +113,7 @@ class ManageLikesTest extends TestCase
         ]);
 
         // Define a movie ID
-        $movieId = fake()->numberBetween(100000, 999999);
+        $movieId = 550; // Movie ID for Fight Club
 
         //Fake request
         $response = $this->actingAs($user)
